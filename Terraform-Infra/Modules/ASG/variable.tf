@@ -1,0 +1,37 @@
+variable "app_tier_launch_template_name" {}
+variable "app_tier_launch_template_description" {}
+variable "app_tier_launch_template_image_id" {}
+variable "app_tier_launch_template_instance_type" {}
+variable "app_tier_launch_template_SG_ids" {}
+variable "app_tier_launch_template_instance_profile_name" {}
+variable "app_tier_ASG_name" {}
+variable "app_tier_min_size" {}
+variable "app_tier_max_size" {}
+variable "app_tier_desired_capacity" {}
+variable "app_tier_ASG_force_delete" {}
+variable "app_tier_ASG_vpc_zone_identifier" {}
+variable "app_tier_ASG_tg_arn" {}
+variable "app_tier_ASG_health_check_type" {}
+variable "external_lb_dns" {}
+variable "web_tier_launch_template_name" {}
+variable "web_tier_launch_template_description" {}
+variable "web_tier_launch_template_image_id" {}
+variable "web_tier_launch_template_instance_type" {}
+variable "web_tier_launch_template_SG_ids" {}
+variable "web_tier_launch_template_instance_profile_name" {}
+variable "db_RDS_endpoint" {}
+variable "db_user" {}
+variable "db_password" {}
+variable "db_name" {}
+variable "web_tier_ASG_name" {}
+variable "web_tier_min_size" {}
+variable "web_tier_max_size" {}
+variable "web_tier_desired_capacity" {}
+variable "web_tier_ASG_force_delete" {}
+variable "web_tier_ASG_vpc_zone_identifier" {}
+variable "web_tier_ASG_tg_arn" {}
+variable "web_tier_ASG_health_check_type" {}
+variable "app_tier_depends_on" {}
+variable "web_tier_depends_on" {
+  
+}

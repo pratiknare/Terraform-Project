@@ -1,4 +1,4 @@
-require('dotenv').config(); // Add this at the top
+require('dotenv').config();
 
 module.exports = Object.freeze({
     DB_HOST: process.env.DB_HOST,
