@@ -8,51 +8,32 @@ const con = mysql.createConnection({
     database: dbcreds.DB_DATABASE
 });
 
+// CONNECT TO DB
+con.connect(err => {
+    if (err) {
+        console.error("DB connection failed:", err);
+        return;
+    }
+    console.log("Connected to database");
+});
+
 function addTransaction(amount, desc) {
-    const query = "INSERT INTO transactions (amount, description) VALUES (?, ?)";
-    con.query(query, [amount, desc], function(err, result) {
-        if (err) throw err;
-        console.log("Transaction added.");
-    });
-    return 200;
-}
-
-function getAllTransactions(callback) {
-    const query = "SELECT * FROM transactions";
-    con.query(query, function(err, result) {
-        if (err) throw err;
-        return callback(result);
+    return new Promise((resolve, reject) => {
+        const query = "INSERT INTO transactions (amount, description) VALUES (?, ?)";
+        con.query(query, [amount, desc], function(err) {
+            if (err) return reject(err);
+            resolve();
+        });
     });
 }
 
-function findTransactionById(id, callback) {
-    const query = "SELECT * FROM transactions WHERE id = ?";
-    con.query(query, [id], function(err, result) {
-        if (err) throw err;
-        return callback(result);
+function getAllTransactions() {
+    return new Promise((resolve, reject) => {
+        con.query("SELECT * FROM transactions", (err, result) => {
+            if (err) return reject(err);
+            resolve(result);
+        });
     });
 }
 
-function deleteAllTransactions(callback) {
-    const query = "DELETE FROM transactions";
-    con.query(query, function(err, result) {
-        if (err) throw err;
-        return callback(result);
-    });
-}
-
-function deleteTransactionById(id, callback) {
-    const query = "DELETE FROM transactions WHERE id = ?";
-    con.query(query, [id], function(err, result) {
-        if (err) throw err;
-        return callback(result);
-    });
-}
-
-module.exports = { 
-    addTransaction, 
-    getAllTransactions, 
-    deleteAllTransactions, 
-    findTransactionById, 
-    deleteTransactionById 
-};
+module.exports = { addTransaction, getAllTransactions };
